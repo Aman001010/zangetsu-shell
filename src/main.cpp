@@ -26,7 +26,7 @@ int main() {
 
   if (firstword =="echo"){
 
-    int len = firstword.length();
+    int len = input.length();
     std::string output = input.substr(5,len+1);
     std::cout << output << std::endl;
   }

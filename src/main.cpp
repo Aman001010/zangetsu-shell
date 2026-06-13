@@ -17,8 +17,23 @@ int main() {
    loop_check=false;
    break;
   }
-  std::cout << input+": command not found"<<std::endl;
-  
-
+  std::string firstword ="";
+  int i=0;
+  while(input[i]!=' '){
+    firstword+=input[i];
+    i++;
   }
+
+  if (firstword =="echo"){
+
+    int len = firstword.length();
+    std::string output = input.substr(5,len+1);
+    std::cout << output << std::endl;
+  }
+  else{
+  std::cout << input+": command not found"<<std::endl;
+  }
+
+  
+}
 }

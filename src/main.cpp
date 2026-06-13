@@ -30,6 +30,16 @@ int main() {
     std::string output = input.substr(5,len+1);
     std::cout << output << std::endl;
   }
+  else if(firstword=="type"){
+        int len = input.length();
+    std::string command = input.substr(5,len+1);
+    if (command == "echo" | command == "type" | command == "exit"){
+      std::cout<< command+" is a shell bulletin"<<std::endl;
+    }
+    else{
+      std::cout<< command+": not found"<<std::endl;
+    }
+  }
   else{
   std::cout << input+": command not found"<<std::endl;
   }

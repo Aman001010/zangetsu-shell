@@ -12,7 +12,13 @@ int main() {
   std::cout << "$ ";
   std::string input;
   std::getline(std::cin, input);
+  
+  if (input == "exit"){
+   loop_check=false;
+   break;
+  }
   std::cout << input+": command not found"<<std::endl;
+  
 
   }
 }

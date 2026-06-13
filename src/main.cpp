@@ -7,9 +7,12 @@ int main() {
   std::cerr << std::unitbuf;
 
   // TODO: Uncomment the code below to pass the first stage
+  bool loop_check=true;
+  while (loop_check == true){
   std::cout << "$ ";
   std::string input;
   std::getline(std::cin, input);
   std::cout << input+": command not found"<<std::endl;
 
+  }
 }

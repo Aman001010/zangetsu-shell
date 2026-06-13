@@ -34,7 +34,7 @@ int main() {
         int len = input.length();
     std::string command = input.substr(5,len+1);
     if (command == "echo" | command == "type" | command == "exit"){
-      std::cout<< command+" is a shell bulletin"<<std::endl;
+      std::cout<< command+" is a shell builtin"<<std::endl;
     }
     else{
       std::cout<< command+": not found"<<std::endl;

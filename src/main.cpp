@@ -36,6 +36,9 @@ int main() {
     if (command == "echo" | command == "type" | command == "exit"){
       std::cout<< command+" is a shell builtin"<<std::endl;
     }
+    else if (command == "grep"){
+      
+    }
     else{
       std::cout<< command+": not found"<<std::endl;
     }

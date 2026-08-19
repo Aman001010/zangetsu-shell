@@ -42,7 +42,9 @@ int main() {
     
     else{
       // the below is responsible of getting the entire path to search for the command and find out if it exists in the OS or not
+
       int count=0; //for the found/not found of executable when searching
+      
       if(const char* full_path = std::getenv("PATH")){ // gives PATH to full_path
 
         //stringstream object ss created, stringstream allows us to either convert string character type from say string to int OR  (the use here) to parse the string 
@@ -63,6 +65,7 @@ int main() {
           if(access(filepath.c_str(),X_OK)==0){
             std::cout<< command+" is "+filepath<<"\n";
             count=1;
+            break;
           }
           
 

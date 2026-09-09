@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
+#include <vector>
 #include <unistd.h>
 
 std::string path_file(const std::string& command){
@@ -40,13 +41,50 @@ std::string path_file(const std::string& command){
         
   
 }
+return "";
 }
+
+void execution(const std::string& input){
+  //so basically I will be creating a child process to run the executable and thus use fork to create the child process first
+
+  pid_t pid = fork(); //fork gives an integer where positive number is parent's process 
+  //tokenizing the input string 
+  std::string word ="";
+  std::vector<std::string> words;
+  for(int i=0;i<input.length();i++){
+    if(input!=" "){
+      word+=input[i];
+      
+    }
+    else {
+        words.push_back(word);
+        word = "";
+    }
+
+  }
+  if(!word.empty()){
+    words.push_back(word);
+  }
+  std::vector<char*> args;
+  for(auto& word:words){
+    args.push_back(word.data()); //using .data() instead of &word[0] due to undefined behaviour of &word[0] 
+
+  }
+  args.push_back(NULL);
+  if(pid ==0){ //child process when pid =0 
+     
+    execvp(args[0], args.data());
+  }
+
+}
+
+
 int main() {
   // Flush after every std::cout / std:cerr
   std::cout << std::unitbuf;
   std::cerr << std::unitbuf;
 
-  // TODO: Uncomment the code below to pass the first stage
+  
   bool loop_check=true;
   while (loop_check == true){
   std::cout << "$ ";
@@ -74,7 +112,7 @@ int main() {
     int len = input.length();
     std::string command = input.substr(5,len+1);
 
-    if (command == "echo" | command == "type" | command == "exit"){
+    if (command == "echo" || command == "type" || command == "exit"){
       std::cout<< command+" is a shell builtin"<<std::endl;
     }
     
@@ -92,7 +130,11 @@ int main() {
   }
   
   else{
-  std::cout << input+": command not found"<<std::endl;
+    
+    std::string executable_or_not= path_file(firstword);
+    if(executable_or_not != ""){
+      execution(input);
+    }
   }
 
   

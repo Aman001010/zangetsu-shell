@@ -52,7 +52,7 @@ void execution(const std::string& input){
   std::string word ="";
   std::vector<std::string> words;
   for(int i=0;i<input.length();i++){
-    if(input!=" "){
+    if(input[i]!=' '){
       word+=input[i];
       
     }

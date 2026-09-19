@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <vector>
 #include <unistd.h>
+#include <sys/wait.h>
 
 std::string path_file(const std::string& command){
   // the below is responsible of getting the entire path to search for the command and find out if it exists in the OS or not
@@ -52,6 +53,7 @@ void execution(const std::string& input){
   std::string word ="";
   std::vector<std::string> words;
   for(int i=0;i<input.length();i++){
+
     if(input[i]!=' '){
       word+=input[i];
       
@@ -74,6 +76,17 @@ void execution(const std::string& input){
   if(pid ==0){ //child process when pid =0 
      
     execvp(args[0], args.data());
+    //anything being returned after execvp means execvp failed so we can safely put an error message
+    std::cerr<<"Failed to execute\n";
+
+  }
+  else if(pid<=-1){
+    std::cerr<<"Not found\n";
+  } 
+  else{
+    //parent process
+    pid_t waiting=waitpid(pid,nullptr,0);
+    
   }
 
 }
@@ -135,8 +148,12 @@ int main() {
     if(executable_or_not != ""){
       execution(input);
     }
+    else{
+      std::cout<< " not found" <<std::endl;
+    }
   }
 
   
 }
 }
+

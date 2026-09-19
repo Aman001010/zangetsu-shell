@@ -113,7 +113,11 @@ int main() {
   while(input[i]!=' '){
     firstword+=input[i];
     i++;
+    if(i==input.length()){
+      break;
+    }
   }
+  
 
   if (firstword =="echo"){
 

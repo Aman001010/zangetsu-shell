@@ -149,7 +149,7 @@ int main() {
       execution(input);
     }
     else{
-      std::cout<< " not found" <<std::endl;
+      std::cout<< firstword+": command not found" <<std::endl;
     }
   }
 
